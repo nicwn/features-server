@@ -1,0 +1,1245 @@
+/**
+ * Atrium base stylesheet.
+ *
+ * Provides styling for generic components and elements within the main
+ * page canvas.
+ */
+
+body.tao {
+  background:#444;
+  color:#333;
+  }
+
+a {
+  color:#48a;
+  text-decoration:none;
+  }
+
+div.limiter { width:960px; }
+
+body.anonymous-login div.limiter { width:560px; }
+
+/**
+ * "Power" hover classes ==============================================
+ */
+ul.multistep li.active-step,
+.form-text:focus,
+.form-textarea:focus,
+.form-select:focus,
+.prose a:hover,
+table tr:hover,
+#right table tr.active,
+ul.menu a:hover { background-color:#ecf4f8; }
+
+div.dropdown-blocks div.block div.item-list li a:hover,
+div.pager li.pager-current,
+ul.menu a.active,
+div.more-link a:hover,
+div.node-links ul li a:hover,
+div.comment-links ul li a:hover {
+  color:#fff;
+  background:url(images/sprite_base.png) 0px -400px repeat-x;
+  }
+
+/**
+ * USERNAMES, PICS ====================================================
+ */
+a.username {
+  font-size:10px;
+  text-transform:uppercase;
+  vertical-align:baseline;
+  color:#666;
+  }
+
+a.user-picture {
+  text-indent:-999px;
+  overflow:hidden;
+  display:block;
+  background-repeat:no-repeat;
+  }
+
+  div.picture-user-s,
+  a.picture-user-s {
+    width:30px;
+    height:30px;
+    }
+
+  div.picture-user-m,
+  a.picture-user-m {
+    width:60px;
+    height:60px;
+    }
+
+  div.picture-user-s { background:url(images/sprite_base.png) -270px 0px no-repeat; }
+  div.picture-user-m { background:url(images/sprite_base.png) -300px 0px no-repeat; }
+
+/**
+ * Growl-like messages ================================================
+ */
+#growl {
+  position:fixed;
+  right:20px;
+  top:20px;
+  width:300px;
+  z-index:1000;
+  }
+
+  div.messages {
+    border:5px solid #333;
+    background-color:#000;
+    color:#fff;
+    margin:0px 0px 10px;
+
+    position:relative;
+    opacity:.95;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    }
+
+  div.messages div.message-content {
+    max-height:400px;
+    padding:10px;
+    }
+
+  div.messages div.message-content li.message-item {
+    border-bottom:1px solid #666;
+    padding-bottom:9px;
+    margin-bottom:10px;
+    }
+
+    div.messages div.message-content li.last {
+      border:0px;
+      padding:0px;
+      margin:0px;
+      }
+
+  div.messages div.message-label {
+    line-height:15px;
+    font-size:10px;
+    font-weight:bold;
+    text-transform:uppercase;
+
+    padding:5px 10px;
+    color:#fff;
+    background-color:#6c2;
+    }
+
+    div.warning div.message-label { background-color:#f90; }
+    div.error div.message-label { background-color:#b10; }
+
+  a.admin-message-close,
+  span.close {
+    float:right;
+
+    width:25px;
+    height:25px;
+
+    overflow:hidden;
+    text-indent:-999px;
+
+    cursor:pointer;
+    background:url(images/sprite_base.png) -105px 0px no-repeat;
+    }
+
+  .autoclose a.admin-message-close,
+  .autoclose span.close { display:none; }
+
+/**
+ * Page header ========================================================
+ */
+#page-header,
+#page { background:#ddd; }
+
+#page-header { padding:20px 0px 0px; }
+
+#page-header div.limiter { background:#eee url(images/bleeds.png) 0% 100% repeat-x; }
+
+#page-header div.context-links {
+  line-height:30px;
+  height:30px;
+  padding:5px 10px;
+  float:right;
+  }
+
+  #page-header div.context-links a {
+    color:#fff;
+    font-size:11px;
+    padding:5px 10px;
+    margin-left:5px;
+    }
+
+  #page-header h2.page-title {
+    padding:0px 10px;
+    font-size:15px;
+    line-height:40px;
+    }
+
+    #page-header h2.page-title a.username {
+      color:inherit;
+      font-size:inherit;
+      text-transform:none;
+      }
+
+#page-header ul.links {
+  border-style:solid;
+
+  float:left;
+
+  font-size:11px;
+  font-weight:bold;
+  line-height:40px;
+  }
+
+  #page-header ul.links li a,
+  #page-header ul.links li a.active,
+  #page-header ul.links li.active a {
+    padding:0px 15px;
+    border-right:1px solid #e8e8e8;
+    }
+
+    #page-header ul.links li.active a,
+    #page-header ul.links li.active a.active,
+    #page-header ul.links li.active a:hover {
+      color:#333 !important;
+      background: #fff !important;
+      }
+
+#page ul.secondary-tabs {
+  float:none;
+  background:#fff;
+  font-size:11px;
+  font-weight:bold;
+  line-height:25px;
+  padding:7px 10px;
+  border-bottom:1px solid #ddd;
+  }
+
+#page ul.secondary-tabs a {
+  padding:0px 10px;
+  margin:0px 5px 0px 0px;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  }
+
+  #page ul.secondary-tabs li.active a,
+  #page ul.secondary-tabs li.active a:hover,
+  #page ul.secondary-tabs li.active a.active {
+    color:#333;
+    background:#f8f8f8;
+    }
+
+/**
+ * Mission text =======================================================
+ */
+div.mission {
+  font-size:15px;
+  line-height:30px;
+  color:#666;
+  padding:20px;
+  border-bottom:1px solid #ddd;
+  }
+
+/*
+ * Page layout ========================================================
+ */
+#page {
+  padding:0px 0px 19px;
+  border-bottom:1px solid #999;
+  }
+
+#page div.limiter { background: #fff; }
+
+  body.one-sidebar #page div.limiter { background: #fff url(images/page.png) -780px 0px repeat-y; }
+  body.archived #page div.limiter { opacity: .5; }
+
+div#main { padding:20px; }
+
+body.one-sidebar div#main {
+  overflow:hidden;
+  float:left;
+  width:620px;
+  }
+
+#right {
+  border-top:1px solid #fff;
+  width:300px;
+  float:right;
+  }
+
+  /* Auto-pad form sidebars */
+  div.form #right {
+    width:298px;
+    padding:0px 1px;
+    }
+
+/**
+ * Blocks: Right ======================================================
+ */
+#right div.block { padding:0px 1px; }
+
+#right h2.block-title {
+  padding:5px 9px;
+  background:#eee;
+  color:#666;
+  font-weight:bold;
+  font-size:11px;
+  }
+
+#right div.block-content {
+  font-size:12px;
+  line-height:15px;
+  background:#f8f8f8 url(images/bleeds.png) 0% 100% repeat-x;
+  padding:9px;
+  border-bottom:1px solid #fff;
+  }
+
+/**
+ * Blocks: Content ====================================================
+ */
+#content div.block {
+  background:url(images/hrule_dotted.png) 0% 100% repeat-x;
+  padding:0px 0px 20px;
+  margin:0px 0px 20px;
+  position: static;
+  }
+
+#content div.block:last-child {
+  background:transparent;
+  padding:0px;
+  margin:0px;
+  }
+
+#content h2.block-title {
+  float:left;
+  line-height:20px;
+  padding:0px 10px;
+  margin:0px 0px 10px;
+
+  font-weight:bold;
+  font-size:11px;
+  background:#ccc;
+  color:#fff;
+  }
+
+#content div.block-content {
+  clear:both;
+  background:#fff;
+  padding:5px 0px 0px;
+  }
+
+/**
+ * Lists ==============================================================
+ */
+#page div.item-list h3,
+#page div.item-list li {
+  padding:10px 0px 9px;
+  border-bottom:1px solid #eee;
+  }
+
+#page div.block div.item-list li.first,
+#page div.block div.item-list li.views-row-first { padding-top:0px; }
+
+#page div.block div.item-list li.last,
+#page div.block div.item-list li.views-row-last { border-bottom:0px; }
+
+#right div.item-list li a.active {
+  color:#333;
+  font-weight:bold;
+  }
+
+/**
+ * Menus ==============================================================
+ */
+ul.menu li {
+  background:#eee;
+  border:0px;
+  }
+
+ul.menu li li { padding-left:10px; }
+
+ul.menu span.icon {
+  float:right;
+  width:24px;
+  height:24px;
+  background:url(images/sprite_base.png) -80px 0px no-repeat;
+  }
+
+ul.menu a {
+  background:#fff;
+  display:block;
+  line-height:15px;
+  padding:4px 0px 5px 10px;
+  border-top:1px solid #eee;
+  }
+
+/**
+ * PAGER ==============================================================
+ */
+div.pager {
+  clear:both;
+  background:#f8f8f8 url(images/bleeds.png) 0% 100% repeat-x;
+  border:1px solid #ddd;
+  font-size:13px;
+  line-height:35px;
+  }
+
+  div.pager ul.pager-list { float:left; }
+
+  div.pager ul.pager-links {
+    font-weight:bold;
+    float:right;
+    }
+
+  div.pager li a,
+  div.pager li span {
+    padding:0px 15px;
+    float:left;
+    }
+
+  div.pager ul.pager-list li { border-right:1px solid #ddd; }
+  div.pager ul.pager-links li { border-left:1px solid #ddd; }
+  div.pager li a:hover { background:#fff; }
+
+  /* Views mini pager */
+  div.block div.view { position:relative; }
+
+    div.block div.views-mini-pager {
+      position:absolute;
+      top:0px;
+      right:0px;
+
+      color:#999;
+      line-height:20px;
+      }
+
+    div.block div.views-mini-pager div.item-list li {
+      padding:0px 5px;
+      font-size:11px;
+      border:0px;
+      }
+
+    div.block div.views-mini-pager li.pager-current { display:none; }
+
+/**
+ * Nodes, comments ====================================================
+ * The goal here is to get node and comment theming as reasonably
+ * consistent as possible.
+ */
+div.node {
+  position:relative;
+  padding:0px 0px 20px;
+  margin:0px 0px 20px;
+  background:url(images/hrule_dotted.png) 0% 100% repeat-x;
+  }
+
+div.block div.node,
+div.node-page {
+  padding:0px;
+  margin:0px;
+  background:transparent;
+  }
+
+h2.comment-title,
+h2.node-title {
+  padding:0px 0px 10px;
+  font-size:18px;
+  font-weight:300;
+  }
+
+div.node-submitted,
+div.comment-submitted {
+  background:#f8f8f8;
+  font-size:11px;
+  border:0px;
+  margin:0px;
+  padding:0px;
+
+  height:30px;
+  line-height:30px;
+  }
+
+  div.node-submitted div.picture,
+  div.comment-submitted div.picture {
+    float:left;
+    margin-right:10px;
+    }
+
+  div.node-submitted .username,
+  div.comment-submitted .username { float:left; }
+
+  div.node-submitted span.date,
+  div.comment-submitted span.date{
+    float:right;
+    font-size:10px;
+    background:#fff;
+    border:1px solid #eee;
+    border-right:0px;
+    color:#666;
+    line-height:10px;
+    padding:4px 5px;
+    margin:5px 0px;
+    }
+
+  div.comment-submitted { margin:0px 0px 10px; }
+
+  div.node-body { margin:10px 0px 0px; }
+
+div.more-link a,
+div.node-links ul.links,
+div.comment-links ul.links {
+  font-size:11px;
+  float:right;
+  }
+
+  div.node-links ul li,
+  div.comment-links ul li { padding-left:1px; }
+
+  div.more-link a,
+  div.node-links ul li span,
+  div.comment-links ul li span,
+  div.node-links ul li a,
+  div.comment-links ul li a {
+    float:left;
+    line-height:25px;
+    padding:0px 10px;
+    background:#f8f8f8 url(images/bleeds.png) 0px 100% repeat-x;
+    }
+
+  /* View more link */
+  div.more-link {
+    height:25px;
+    line-height:25px;
+    font-size:11px;
+    }
+
+div.node div.field {
+  margin:0px;
+  padding:7px 5px;
+
+  font-size:11px;
+  line-height:15px;
+
+  border:0px;
+  border-top:1px solid #fff;
+  background:#f8f8f8;
+  }
+
+  div.node .field .field-label,
+  div.node .field .field-label-inline,
+  div.node .field .field-label-inline-first { font-weight:normal; }
+
+  div.node div.terms ul.links,
+  div.node div.terms ul.links li,
+  div.node div.terms ul.links li a {
+    display:inline;
+    margin:0px;
+    float:none;
+    }
+
+  div.node div.terms ul.links li a {
+    background:#fff;
+    padding:2px 5px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    }
+
+/**
+ * Prose text formatting ==============================================
+ */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color:#444;
+  margin-bottom:10px;
+  padding-bottom:9px;
+  border-bottom:1px solid #eee;
+  }
+
+.prose h1 {
+  font-weight:normal;
+  font-size:18px;
+  }
+
+.prose h2 { font-size:15px; }
+
+/**
+ * Comment threads ====================================================
+ */
+div.box,
+div.comment {
+  margin:0px 0px 10px;
+  padding:9px;
+  border:1px solid #eee;
+  border-bottom-color:#ddd;
+  background:#fff;
+  }
+
+#comments {
+  border:1px solid #eee;
+  border-top-color:#ddd;
+  background:#f8f8f8;
+  }
+
+#comments div.box,
+#comments div.comment { margin:9px 9px 10px; }
+
+#comments div.indented {
+  margin-left:10px;
+  border-left:2px solid #cde;
+  }
+
+  #comments div.indented div.indented { border-color:#ecc }
+  #comments div.indented div.indented div.indented { border-color:#cec }
+
+/* Sticky nodes */
+div.sticky,
+div.block div.sticky {
+  background:#fff;
+  border:1px solid #eee;
+  border-bottom-color:#ddd;
+  padding:9px;
+  }
+
+/**
+ * XREF ================================================================
+ */
+div.xref {
+  float:right;
+  position:relative;
+
+  font-size:11px;
+  width:20px;
+  height:20px;
+  }
+
+div.xref div.label {
+  cursor:pointer;
+  position:absolute;
+  right:0px;
+  top:0px;
+
+  background:url(images/sprite_base.png) 100% -60px no-repeat;
+  overflow:hidden; text-indent:-999px;
+  border:1px solid #fff;
+  width:23px;
+  height:23px;
+  line-height:23px;
+  }
+
+div.xref-active div.label {
+  border-color:#eee;
+  text-indent:0px;
+  width:123px;
+  padding:0px 5px;
+  }
+
+div.xref ul.links {
+  position:absolute;
+  right:0px;
+  top:25px;
+  display:none;
+  margin:0px;
+  background:#fff;
+  border-width:0px 1px 1px;
+  border-color:#eee;
+  border-style:solid;
+  width:133px;
+  }
+
+  div.xref-active ul.links,
+  div.xref ul.links li,
+  div.xref ul.links li a {
+    margin:0px;
+    float:none;
+    display:block;
+    }
+
+  div.xref ul.links li a {
+    line-height:15px;
+    padding:5px;
+    }
+
+/*
+ * TABLES ==============================================================
+ */
+table {
+  font-size:11px;
+  margin-bottom:0px;
+  background: #f8f8f8;
+  }
+
+table th,
+table td,
+table.casetracker-assign-to td {
+  padding:7px 8px;
+  border-width:1px 0px;
+  border-style:solid;
+  border-color:#fff;
+  }
+
+table th {
+  padding:5px;
+  background:#fff;
+  color:#666;
+  white-space:nowrap;
+  }
+
+table td.fill { width:90%; }
+
+#right table { background:transparent; }
+
+#right div.block table th,
+#right div.block table td { border:0px; }
+
+form table th,
+form table td,
+form table.casetracker-assign-to td {
+  border:0px;
+  border-bottom:1px solid #ddd;
+  background:transparent;
+  }
+
+form table th {
+  background:transparent;
+  border:0px;
+  padding:5px;
+  }
+
+table.views-view-grid td { vertical-align:top; }
+
+/**
+ * Module: DIFF =======================================================
+ */
+div.diff-inline-controls {
+  background:#f8f8f8;
+  font-size:11px;
+
+  border-top:1px solid #fff;
+
+  height:29px;
+  padding:0px 10px;
+  margin:0px;
+  }
+
+  div.diff-inline-controls a.button {
+    margin-top:3px;
+    padding-top:0px;
+    padding-bottom:0px;
+    }
+
+  div.diff-inline-controls span.diff-inline-legend {
+    padding:4px 0px 5px;
+    float:left;
+    }
+
+#right div.block-diff {
+  padding:10px 10px 10px 9px;
+  border-left:1px solid #f8f8f8;
+  background:#fff;
+  }
+
+#right div.block-diff div.block-content {
+  padding:0px;
+  background:#fff;
+  }
+
+#right div.block-diff h2.block-title {
+  padding:0px 0px 10px;
+  background:#fff;
+  }
+
+  div.block-diff table.diff-inline-revisions tr,
+  div.block-diff table.diff-inline-revisions tr:hover {
+    color:#999;
+    background:transparent;
+    border-top:1px solid #eee;
+    }
+
+  div.block-diff table.diff-inline-revisions tr.active { color:#333; }
+
+span.diff-deleted { color:#ccc; }
+
+span.diff-added,
+span.diff-changed {
+  padding-top:5px;
+  padding-bottom:5px;
+  background:#ffc;
+  border-bottom:1px solid #fe9;
+
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  }
+
+span.diff-added {
+  background:#cfc;
+  border-color:#9c9;
+  }
+
+/**
+ * Module: CASETRACKER ================================================
+ */
+div.atrium-case-summary {
+  font-size:11px;
+  line-height:25px;
+  padding:0px;
+  border-top:1px solid #fff;
+  background:#f8f8f8;
+  }
+
+  /* Closed */
+  div.atrium-case-status-7 {
+    color:#999;
+    background:#fcfcfc;
+    }
+
+  div.atrium-case-summary div.primary,
+  div.atrium-case-summary div.secondary {
+    padding:10px;
+    }
+
+  div.atrium-case-summary div.primary {
+    border-right:1px solid #fff;
+    width:240px;
+    margin-right:10px;
+    }
+
+  div.atrium-case-summary label {
+    color:#999;
+    }
+
+/* TABLE METRICS */
+table.cases {}
+
+table.cases td {
+  white-space:nowrap;
+  font-size:11px;
+  line-height:15px;
+  padding:10px 3px;
+  }
+
+  table.cases td.views-field-title {
+    white-space:normal;
+    width:50%;}
+
+  table.cases td.views-field-last-updated { font-size:10px; }
+
+table.cases a { font-weight:bold; }
+
+  table.cases tr.odd td.active,
+  table.cases tr.even td.active {
+    background:#e8f0fc;
+    }
+
+  table.cases tr.mine td.views-field-assign-to {
+    background:#fea;
+    }
+
+table.cases span.case-priority {
+  display:block;
+  margin:0px auto 0px;
+  width:30px; height:5px;
+  overflow:hidden;
+  text-indent: -999px;
+  background: url(images/sprite_base.png) 0px 0px no-repeat;
+  }
+
+  table.cases span.priority-1 { background-position: 0px 0px; }
+  table.cases span.priority-2 { background-position: 0px -5px; }
+  table.cases span.priority-3 { background-position: 0px -10px; }
+  table.cases span.priority-4 { background-position: 0px -15px; }
+  table.cases span.priority-5 { background-position: 0px -20px; }
+
+/* CLOSED */
+table.cases tr.status-7,
+table.cases tr.status-7 a {
+  font-weight:normal; color:#bbb;}
+
+table.cases tr.status-7 {
+  background:#fff;}
+
+  table.cases tr.status-7 td.active {
+    background:#f8fcff;}
+
+  table.cases tr.status-7.mine td.views-field-assign-to {
+    background:#ffe;}
+
+table.case_changes { margin:0px 0px 10px; }
+table.case_changes td { padding:5px; }
+
+/**
+ * Module: SHOUTBOX ===================================================
+ */
+div.shoutform div.shoutbox-input {
+  padding:10px;
+  border-bottom:1px solid #eee;
+  }
+
+/* Page view */
+div.view-atrium-shoutbox-shouts div.views-field-picture {
+  margin-right:5px;
+  float:left;
+  }
+
+div.view-atrium-shoutbox-shouts div.views-field-name {
+  padding:0px;
+  margin:0px;
+  line-height:30px;
+  }
+
+#right div.block-messaging_shoutbox form { padding:0px; }
+
+  #right div.block-messaging_shoutbox div.item-list li.views-row-first { padding-top:10px; }
+
+  #right div.block-messaging_shoutbox div.view { padding-bottom:30px; }
+
+  #right div.block-messaging_shoutbox div.views-mini-pager {
+    top:auto;
+    bottom:5px;
+    }
+
+/**
+ * Views ==============================================================
+ */
+div.view-header,
+div.view-filters {
+  background: #f8f8f8 url(images/bleeds.png) 0% 100% repeat-x;
+  border:1px solid #ddd;
+  margin:0px 0px 10px;
+  }
+
+  div.view-header { padding:14px; }
+  div.view-filters { padding:0px 9px; }
+
+  #right div.view-header {
+    padding:9px;
+    background:#fff;
+    }
+
+/* Style plugin grouped headings */
+div.view h3,
+div.item-list h3,
+table caption {
+  text-align:left;
+  padding:10px 0px;
+
+  color:#666;
+  font-size:15px;
+  font-weight:bold;
+  }
+
+/* Views fields */
+div.view li p {
+  margin:0px;
+  padding:0px;
+  }
+
+div.view div.views-field-url,
+div.view div.views-field-description,
+div.view div.views-field-edit-node,
+div.view div.views-field-field-date-value,
+div.view div.views-field-log,
+div.view div.view-content label,
+div.view div.views-field-type,
+div.view div.views-field-last-updated,
+div.view div.views-field-timestamp,
+div.view div.views-field-published,
+div.view div.views-field-changed,
+div.view-atrium-blog-comments li div.views-field-title {
+  color:#666;
+  font-size:10px;
+  }
+
+  div.view div.views-field-description { font-size:11px; }
+
+  div.view-atrium-blog-comments li div.views-field-title { text-align:right }
+
+  div#right div.view li div.views-field-edit-node,
+  div#right div.view li div.views-field-name {
+    padding:0px 5px;
+    background:#fff;
+    }
+
+  div#right div.view div.views-field-edit-node { float:right; }
+
+div.grouped div.grouped-left {
+  float:left;
+  width:25%;
+  }
+
+div.grouped div.grouped-right {
+  float:right;
+  width:70%;
+  }
+
+table.views-view-grid div.views-field-title {
+  font-size:13px;
+  font-weight:bold;
+  }
+
+td.views-field-title div.views-field-title {
+  font-size:15px;
+  font-weight:bold;
+  margin:0px 0px 5px;
+  }
+
+/* VBO */
+#views-bulk-operations-dropdown,
+#views-bulk-operations-submit {
+  float:left;
+  padding:0px 5px 0px 0px;
+  }
+
+/* New marker */
+.node a.new,
+.comment a.new,
+span.marker {
+  display:block;
+  float:right;
+  background:url(images/sprite_base.png) 0px -25px no-repeat;
+  width:20px;
+  height:20px;
+  text-indent:-999px;
+  overflow:hidden;
+  }
+
+div.views-field-post-count-new {
+  background:#48a;
+  float:right;
+  line-height:15px;
+  font-size:10px;
+  margin-left:5px;
+
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  }
+
+  div.views-field-post-count-new span.marker { display:none; }
+
+  div.views-field-post-count-new span.field-content {
+    font-weight:bold;
+    display:block;
+    padding:0px 5px;
+    color:#fff;
+    }
+
+/* Profile view */
+#block-views-atrium_profile-block_1 div.item-list li { padding:0px; }
+
+div.view-atrium-profile li div {
+  clear:both;
+  position:relative;
+  }
+
+  div.view-atrium-profile li div .field-content {
+    display:block;
+    border-top:1px solid #eee;
+    padding:5px 5px 5px 100px;
+    }
+
+  div.view-atrium-profile li div label {
+    padding:5px 0px;
+    position:absolute;
+    left:0px;
+
+    color:#999;
+    font-weight:bold;
+    font-size:11px;
+    }
+
+div.view-atrium-profile li div.views-field-picture,
+div.view-atrium-profile li div.views-field-name,
+div.view-atrium-profile li div.views-field-mail {
+  padding:0px 0px 10px;
+  border:0px;
+  line-height:60px;
+  margin-right:10px;
+  float:left;
+  clear:none;
+  }
+
+  div.view-atrium-profile li div.views-field-name span.field-content,
+  div.view-atrium-profile li div.views-field-mail span.field-content,
+  div.view-atrium-profile li div.views-field-picture span.field-content {
+    border:0px;
+    padding:0px;
+    }
+
+  /**
+  * @TODO: ideally we have some logic that checks to see if both
+  * node title and username are populated. If so, it uses node title.
+  * For now, just hide one of the two.
+  */
+  div.view-atrium-profile div.views-field-title { display:none; }
+  div.view-atrium-profile div.views-field-name {
+    font-weight:bold;
+    font-size:24px;
+    letter-spacing:-2px;
+    text-transform:none;
+    }
+
+/* Archive block selector */
+div.view #edit-summary-wrapper select { width:75%; }
+
+/* Table view fields */
+table td.views-field-comment-count,
+table td.views-field-last-comment-name,
+table td.views-field-last-updated,
+table td.views-field-created,
+table td.views-field-name,
+table td.views-field-type { white-space:nowrap; }
+
+/* Dashboard views */
+div.view-atrium-dashboard td.views-field-filename,
+div.view-atrium-dashboard td.views-field-title { width:75%; }
+div.view-atrium-dashboard td.views-field-filemime { width:100px; }
+div.view-atrium-dashboard td.views-field-group-nid { width:20px; }
+div.view-atrium-dashboard td.views-field-feature { width:15px; }
+div.view-atrium-dashboard td.views-field-last-comment-name { width:25%; }
+
+td.views-field-filename div.views-field-filename { font-weight:bold; }
+
+/* OG faces, Member directory */
+table.views-view-grid .views-field-name {
+  float:none;
+  display:block;
+  text-align:center;
+  }
+
+  table.views-view-grid td div.picture { margin:0px auto; }
+
+/* atrium_users */
+div.view-atrium-users table td.views-field-groups {
+  font-size:10px;
+  line-height:15px;
+  }
+
+/* Views filter */
+div.views-exposed-form input.form-text,
+div.views-exposed-form select { width:auto; }
+
+/* Views block filter */
+div.block div.views-exposed-form div.views-exposed-widget {
+  float:none;
+  padding:5px 0px;
+  }
+
+  div.block div.views-exposed-form div.views-exposed-widget input.form-submit { margin:0px; }
+
+/**
+ * LITECAL ============================================================
+ */
+div.litecal h3.litecal-title { padding:0px; }
+div.litecal div.views-field-field-date-value { color:inherit; }
+
+/**
+ * MULTISTEP ==========================================================
+ */
+ul.multistep {
+  border:10px solid #f8f8f8;
+  margin:0px 0px 20px;
+  line-height:46px;
+  padding:2px;
+
+  background:#fff;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  }
+
+  ul.multistep-2 li { width:50%; }
+  ul.multistep-3 li { width:33%; }
+  ul.multistep-4 li { width:25%; }
+  ul.multistep-5 li { width:20%; }
+
+ul.multistep li span,
+ul.multistep li a {
+  border-right:1px solid #eee;
+
+  letter-spacing:-1px;
+  font-size:18px;
+  color:#999;
+
+  display:block;
+  float:none;
+  padding:0px 10px;
+  }
+
+  ul.multistep li.last span,
+  ul.multistep li.last a { border-right:0px; }
+
+  ul.multistep li.active-step a,
+  ul.multistep li.active-step span { color:#333; }
+
+/**
+ * DL =================================================================
+ */
+dl.node-type-list dt {
+  padding:10px 0px 0px;
+  font-size:15px; }
+
+dl.node-type-list dd {
+  padding:0px 0px 9px;
+  border-bottom:1px solid #ddd;
+  font-size:11px;
+  }
+
+/**
+ * CATCHALL ===========================================================
+ */
+#content div.view-empty,
+#content div.spaces-empty {
+  background:#f4f4f4;
+  border:5px solid #eee;
+  color:#999;
+  font-size:24px;
+  letter-spacing:-1px;
+  text-align:center;
+  line-height:30px;
+  padding:20px;
+  }
+
+  #content div.view-empty *,
+  #content div.spaces-empty * { text-align:inherit; }
+
+  #content div.view-empty a.button,
+  #content div.spaces-empty a.button { font-size:15px; }
+
+#right div.view-empty,
+#right div.spaces-empty {
+  font-weight:bold;
+  font-size:18px;
+  color:#ccc;
+  text-align:center;
+  padding:20px;
+  }
+
+/**
+ * Markup free clearing ===============================================
+ *
+ * Consider adding your own selectors to this instead of finding ways
+ * to sneak the clear-block class into Drupal's markup.
+ * From http://www.positioniseverything.net/easyclearing.html
+ */
+div.form-checkboxes:after{
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  }
+
+div.form-checkboxes {
+  display: inline-block;
+  }
+
+/* Hides from IE-mac \*/
+* html div.form-checkboxes {
+  height: 1%;
+  }
+
+div.form-checkboxes {
+  display: block;
+  }
+/* End hide from IE-mac */
