@@ -3,18 +3,37 @@
 include_once('fserver.features.inc');
 
 /**
+ * Implementation of hook_strongarm().
+ */
+function fserver_strongarm() {
+  return array(
+    'content_extra_weights_fserver_project' => array (
+      'title' => '-5',
+      'body_field' => '5',
+      'revision_information' => '6',
+      'comment_settings' => '7',
+      'menu' => '8',
+    ),
+  );
+}
+
+/**
  * Implementation of hook_views_api().
  */
 function fserver_views_api() {
-  return array('api' => 2);
+  return array(
+    'api' => 2,
+    'path' => drupal_get_path('module', 'fserver') .'/views',
+  );
 }
 
 /**
  * Implementation of hook_link().
  */
 function fserver_link($type, $object, $teaser = FALSE) {
+  // Only allow releases to be added if packaging method is 0 => 'Manual'.
   $links = array();
-  if ($type == 'node' && $object->type == 'fserver_project') {
+  if ($type == 'node' && $object->type == 'fserver_project' && empty($object->field_fserver_method[0]['value'])) {
     $item = menu_get_item('node/add/fserver-release');
     if ($item && $item['access']) {
       $links['fserver-add-release'] = array(
@@ -40,6 +59,11 @@ function fserver_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
       ),
       '#weight' => -10,
     );
+  }
+  else if ($op == 'presave' && $node->type == 'fserver_project') {
+    if (empty($node->field_fserver_method[0]['value'])) {
+      $node->field_fserver_repository[0]['value'] = '';
+    }
   }
   else if ($op == 'presave' && $node->type == 'fserver_release') {
     $node->title = fserver_generate_version($node);
@@ -92,6 +116,12 @@ function fserver_cck_options($type = 'core') {
       unset($major[0]);
       return $major;
 
+    case 'method':
+      return array(
+        0 => t('Manual upload'),
+        'git' => t('GIT repository tags'),
+      );
+
     case 'patch':
       return range(0, 50);
 
@@ -103,7 +133,14 @@ function fserver_cck_options($type = 'core') {
 
     case 'type':
       // We don't use t() here as the update XML requires these strings to be uniform.
-      return array('module' => 'Modules', 'theme' => 'Themes');
+      return array(
+        // 'core' => 'Drupal project',
+        'profile' => 'Installation profiles',
+        'module' => 'Modules',
+        'theme' => 'Themes',
+        // 'theme engine' => 'Theme engines',
+        // 'translation' => 'Translations',
+      );
   }
 }
 
@@ -115,8 +152,42 @@ function fserver_parse_package_name($package_filename) {
   if (preg_match('/^(?<project>\w+)-(?<core>\d+\.x)-(?<major>\d+)\.(?<patch>\d+)-?(?<extra>\w+)?\.(tar\.gz|tgz)$/', $package_filename, $matches)) {
     return $matches;
   };
-
   return array();
+}
+
+/**
+ * Parse a package name into values: core, major, patch and extra.
+ */
+function fserver_parse_tag_name($tag) {
+  // example: drupal-6--1-0-alpha1
+  if (preg_match('/^(?<project>\w+)-(?<core>\d+)--(?<major>\d+)-(?<patch>\d+)-?(?<extra>\w+)?$/', $tag, $matches)) {
+    $parsed = array_intersect_key($matches, array('core' => '', 'major' => '', 'patch' => '', 'extra' => ''));
+    if (!empty($parsed)) {
+      $parsed['core'] = "{$parsed['core']}.x";
+      $parsed['original'] = $tag;
+      $parsed['version'] = "{$parsed['core']}-{$parsed['major']}.{$parsed['patch']}" . (!empty($parsed['extra']) ? "-{$parsed['extra']}" : '');
+      return $parsed;
+    }
+  }
+  return array();
+}
+
+/**
+ * Implementation of hook_form_alter() for fserver_project_node_form.
+ */
+function fserver_form_fserver_project_node_form_alter(&$form, $form_state) {
+  drupal_add_js(drupal_get_path('module', 'fserver') . '/fserver.js');
+  $form['#validate'][] = 'fserver_project_node_form_validate';
+}
+
+/**
+ * Validate handler for fserver_project_node_form.
+ */
+function fserver_project_node_form_validate($form, &$form_state) {
+  // Ensure repository URL is set if using a non-manual method.
+  if (!empty($form_state['values']['field_fserver_method'][0]['value']) && empty($form_state['values']['field_fserver_repository'][0]['value'])) {
+    form_set_error($form_state['values']['field_fserver_repository'][0]['_error_element'], t('Please provide a valid repository URL for this project.'));
+  }
 }
 
 /**
@@ -128,18 +199,18 @@ function fserver_form_fserver_release_node_form_alter(&$form, $form_state) {
     '#type' => 'value',
     '#value' => 'VOID',
   );
-  $form['#submit'][] = 'fserver_node_form_submit';
+  $form['#submit'][] = 'fserver_release_node_form_submit';
 }
 
 /**
  * Submit handler for fserver_release_node_form.
  */
-function fserver_node_form_submit($form, &$form_state) {
+function fserver_release_node_form_submit($form, &$form_state) {
   // Only do something, if the user clicked the preview button.
   if (isset($form_state['clicked_button']['#submit']) && in_array('node_form_build_preview', $form_state['clicked_button']['#submit'])) {
     $node = node_submit($form_state['values']);
     $node->title = fserver_generate_version($node);
-    $form_state['values'] = (array)$node;
+    $form_state['values'] = (array) $node;
   }
 }
 
@@ -147,11 +218,12 @@ function fserver_node_form_submit($form, &$form_state) {
  * Generate a standard version string from a node object.
  * @TODO: Merge this or make use of it in fserver_handler_field_release_tag::render().
  */
-function fserver_generate_version($node) {
+function fserver_generate_version($node, $raw = FALSE) {
   $project = node_load($node->field_fserver_project[0]['nid']);
   $core  = $node->field_fserver_api[0]['value'];
   $major = $node->field_fserver_versionmajor[0]['value'];
   $patch = $node->field_fserver_versionpatch[0]['value'];
   $extra = $node->field_fserver_versionextra[0]['value'];
-  return $project->title . " $core-$major.$patch" . (!empty($extra) ? "-$extra" : '');
+  $version = "{$core}-{$major}.{$patch}" . (!empty($extra) ? "-{$extra}" : '');
+  return $raw ? $version : "{$project->title} $version";
 }

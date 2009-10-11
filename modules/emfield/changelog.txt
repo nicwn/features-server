@@ -1,14 +1,51 @@
-/* $Id: changelog.txt,v 1.12.4.42 2009/08/25 02:45:49 aaron Exp $ */
+/* $Id: CHANGELOG.txt,v 1.1.2.6 2009/10/05 19:05:10 aaron Exp $ */
 
 /**
  *  @file
  *  Changelog for Embedded Media Field (Drupal version 6).
  */
 
+by aaron: Add generic theme for swfobject when that module not included.
+#592284 by aaron: Fix botched update for provider data import.
+
+===============
+ DRUPAL-6--1-8
+===============
+
+by aaron: Add 'provider' views handlers.
+by aaron: Upgrade existing fields to retrieve new data when necessary.
+by aaron: Store version data in new column.
+
+===============
+ DRUPAL-6--1-7
+===============
+
+by aaron: Add support for flv media player profiles.
+
+===============
+ DRUPAL-6--1-5
+===============
+
+September 2009
+--------------
+by aaron: Sanitize only before preview.
+by aaron: Clean up extra columns invocation.
+by aaron: Allow providers to validate URLs.
+#264264 by aaron: Sanitize item for preview.
+
 August 2009
 -----------
- * #370882: Fix menu creation (jdwfly/aaron).
- * #358241 - Field help text links 'Custom URL' to site itself (joachim).
+by aaron: Add option for thumbnail play button overlay.
+by aaron: Implement hook_content_generate for Devel module.
+
+===============
+ DRUPAL-6--1-4
+===============
+
+August 2009
+-----------
+#370882 by jdwfly | aaron: Fix menu creation.
+#358241 by joachim: Field help text links 'Custom URL' to site itself.
 
 DRUPAL-6--1-3
 =============

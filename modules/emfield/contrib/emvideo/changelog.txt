@@ -1,33 +1,98 @@
-/* $Id: changelog.txt,v 1.1.2.50 2009/08/25 02:45:50 aaron Exp $ */
+/* $Id: CHANGELOG.txt,v 1.1.2.24 2009/10/05 19:05:10 aaron Exp $ */
 
 /**
  *  @file
  *  Changelog for Embedded Video Field (emvideo).
  */
 
-August 2009
------------
- * #370882: Fix menu creation (jdwfly/aaron).
- * #542994: Remove emvideo_requirements (chenba/Rob Loach).
- * #397802: blip.tv enclosures seem to not be showing up (jjkiesch).
- * #457452: Remove API info from Guba (aaron).
- * Don't allow spaces in YouTube URL (aaron).
+by aaron: Clean up youtube to send through emfield's swfobject theme by default.
+by aaron: Use all flashvars w/ flvmediaplayer fallback.
+
+================
+ DRUPAL-6--1-10
+================
+
+by aaron: Fix display of youtube w/ flvmediaplayer.
+#592284 by aaron: Fix botched update for duration import.
+
+===============
+ DRUPAL-6--1-8
+===============
+
+by aaron: Add views handlers for duration.
+by aaron: Fix malformed updates.
+by aaron: Add data hook to Blip.tv.
+by aaron: Move modal iframe to template file.
+by aaron: Update all existing field duration data.
+by aaron: Add devel content generate to Vimeo video.
+by aaron: Add duration and devel content generate to UStream video.
+by aaron: Add duration and devel content generate to MySpace video.
+by aaron: Remove jumpcut provider, as they are now dead.
+by aaron: Add duration and devel content generate to Google video.
+by aaron: Implement hook_emvideo_PROVIDER_content_generate for Daily Motion.
+by aaron: Add duration data to Blip.tv.
+by aaron: Refactor theme to supply field duration column data.
+by aaron: Add hook for provider data version.
+by aaron: Add duration column to Archive.org.
+by aaron: Add duration column to fields.
+
+===============
+ DRUPAL-6--1-7
+===============
+
+#588452 by Benjamin Melançon | swevel: Fixed phptemplate_get_ie_styles().
+
+===============
+ DRUPAL-6--1-6
+===============
+
+by aaron: Add support for flvmediaplayer profiles.
+by aaron: Suppress admin_menu from modal iframe.
+#491930 by aaron: Place html/head/body tags around modal iframe; add scripts.
+#491930 by aaron: Don't load swfobject.api when using YouTube in modal.
+
+===============
+ DRUPAL-6--1-5
+===============
+
+#293153 by aaron: Work-around for not being able to paste Blip.tv embed codes.
+#552388 by nick_robillard | srobert72: Fixed Default thumbnail doesn't appear.
+by aaron: Add wrapper div w/ classes to video & preview.
+by aaron: Change modal thumbnail position: relative.
+by aaron: Fix YouTube duration and display of such.
+by aaron: Fix new theme function names.
+by aaron: Fix new formatters.
+by aaron: Fetch YouTube duration.
+by aaron: Remove the YouTube API secret key, which no longer exists.
+by aaron: Change API info for YouTube.
+by aaron: Add formatters for link & duration.
+by aaron: Honor emfield option for thumbnail play button overlay.
+#462170 by aaron: Add support for Shadowbox.
+#445742 by aaron: Separate formatters for thickbox/lightbox.
+#457608 by brianbrown | Manuel Garcia: Remove Veoh provider.
+by aaron: Implement hook_emvideo_PROVIDER_content_generate: YouTube, Blip.TV,
+and Archive.org.
+
+===============
+ DRUPAL-6--1-4
+===============
+
+#370882 by jdwfly | aaron: Fix menu creation.
+#542994 by chenba | Rob Loach: Remove emvideo_requirements.
+#397802 by jjkiesch: blip.tv enclosures seem to not be showing up.
+#457452 by aaron: Remove API info from Guba.
+by aaron: Don't allow spaces in YouTube URL.
 
 DRUPAL-6--1-3
 =============
 
-July 2009
----------
- * Fix emvideo_requirements (mikey_p/Dave Reid).
- * Add a 'return_url' option to thumbnails (aaron).
- * Add ability to play YouTube videos with JW FLV Player (aaron).
- * Rebuild theme in update (aaron).
- * Add $options to YouTube theme (aaron).
-
-June 2009
----------
- * Absolute URL's for custom URL's (aaron).
- * #207224 Fix amphersands in HTML (aaron/seanr).
+by mikey_p | Dave Reid: Fix emvideo_requirements.
+by aaron: Add a 'return_url' option to thumbnails.
+by aaron: Add ability to play YouTube videos with JW FLV Player.
+by aaron: Rebuild theme in update.
+by aaron: Add $options to YouTube theme.
+by aaron: Absolute URL's for custom URL's.
+#207224 by aaron | seanr: Fix amphersands in HTML.
 
 DRUPAL-6--1-2
 =============
